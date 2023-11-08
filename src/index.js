@@ -55,52 +55,68 @@ switch (post.media_type) {
 		throw alert('Uknow post type')
 }
 
-const profilePicUrl = post.caption.user.hd_profile_pic_url_info.url
-
 const div = document.createElement('div')
-
 div.innerHTML = `
-	<h6 style="font-style:italic;margin-bottom:10px;text-align:center">Aviso: Para quitar este cuadro tienes que recargar la página, si lo haces, tendrás que volver a ejecutar el script.</h6>
-	<h1 style="text-align:center;margin-bottom:10px;font-size:20px">Resultado</h1>
-	<div style="width:100%;display:flex;flex-direction:column;align-items:center;jutify-content:center;gap:5px">
-		<div style="display:flex;align-items:center;jutify-content:center;gap:10px">
-			<div>
-				<img src="${profilePicUrl}" style="width:50px;height:50px;object-fit:cover;border-radius:5px" />
-			</div>
-			<div>
-				<a href="${profilePicUrl}" target="_blank">Ver imagen de perfil en HD</a>
-			</div>
-		</div>
+	<style>
+		.modalIGPF {
+			position: fixed;
+			inset: 0;
+			margin: auto;
+			width: 15rem;
+			height: 21rem;
+			padding: 1rem;
+			background: blue;
+			color: white;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+			overflow: auto;
+			z-index: 99999;
+		}
+
+		.fcIGPF {
+			display:flex;
+			align-items:center;
+			jutify-content:center;
+		}
+
+		.imgIGPF {
+			width: 50px;
+			height: 50px;
+			object-fit: cover;
+			border-radius: 5px;
+		}
+	</style>
+	<h6 style="margin-bottom:10px;text-align:center;font-style:italic">Aviso: Para quitar este cuadro tienes que recargar la página.</h6>
+	<h1 style="margin-bottom:12px;text-align:center;font-size:20px">Resultado</h1>
+	<div class="fcIGPF" style="width:100%;flex-direction:column;gap:5px">
 		${media.sources
 			.map((v) =>
 				media.type === 'image'
 					? `
-					<div style="display:flex;align-items:center;jutify-content:center;gap:10px">
+					<div class="fcIGPF" style="gap:10px">
 						<div>
-							<img src="${v}" style="width:50px;height:50px;object-fit:cover;border-radius:5px" />
+							<img src="${v}" class="imgIGPF" />
 						</div>
 						<div>
 							<a href="${v}" target="_blank">Ver en HD</a>
 						</div>
 					</div>
 				`
-					: `<video src="${v}" controls></video>`
+					: `
+					<div class="fcIGPF" style="gap:10px">
+						<div>
+							<video src="${v}" class="imgIGPF"></video>
+						</div>
+						<div>
+							<a href="${v}" target="_blank">Ver en HD</a>
+						</div>
+					</div>
+				`
 			)
 			.join('')}
 	</div>
 `
 
-div.style.position = 'fixed'
-div.style.inset = '0'
-div.style.margin = 'auto'
-div.style.width = '15rem'
-div.style.height = '21rem'
-div.style.padding = '1rem'
-div.style.background = 'blue'
-div.style.color = 'white'
-div.style.borderRadius = '5px'
-div.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)'
-div.style.overflow = 'auto'
-div.style.zIndex = '99999'
+div.classList.add('modalIGPF')
 
 document.body.appendChild(div)
