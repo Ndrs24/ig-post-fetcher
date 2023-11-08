@@ -1,0 +1,6 @@
+.next
+.vscode
+public
+dist
+README.md
+package-lock.json
