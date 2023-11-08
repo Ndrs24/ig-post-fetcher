@@ -1,7 +1,7 @@
-####Para que sirve
+## Para que sirve
 Este script sirve para poder descargar las imágenes y videos de una publicación de instagram, ojo, este script solo funciona estando dentro de una publicación de instagram, de lo contrario no funcionará, solo sirve para poder descargar las imágenes y videos de una publicación de instagram, pronto agregaré más funciones.
 
-####Como usar
+## Como usar
 Estando dentro de una publicación de instagram, abre la consola del navegador, copia el codigo de abajo y pégalo en la consola, le das enter, y listo.
 
 ```js data-copy
